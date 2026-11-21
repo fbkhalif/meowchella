@@ -1,11 +1,11 @@
-<title>Cat Rave Hall</title>
+<title>meowchella</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
 <style>
 /* Layout: one big 3D stage with a row of camera chips under it. The scene is always dark; the page around it follows the viewer's theme. */
 :root{
 --bg:#F6F1FB;--fg:#1D1233;--muted:#65567F;--line:#D9CEEB;--chip:#FFFFFF;--chip-hover:#FFE3F1;--accent:#D4126F;
---font-head:'Bangers','Trebuchet MS',system-ui,sans-serif;--font-body:'Bangers','Trebuchet MS',system-ui,sans-serif;
+--font-head:'Nunito','Arial Rounded MT Bold',Arial,Helvetica,sans-serif;--font-body:'Nunito','Arial Rounded MT Bold',Arial,Helvetica,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0D0719;--fg:#F3ECFF;--muted:#A99BC8;--line:#2F2352;--chip:#1A1030;--chip-hover:#3A1B57;--accent:#FF5CAA;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#0D0719;--fg:#F3ECFF;--muted:#A99BC8;--line:#2F2352;--chip:#1A1030;--chip-hover:#3A1B57;--accent:#FF5CAA;color-scheme:dark}
@@ -86,16 +86,22 @@ button.primary:hover{filter:brightness(1.1);background:linear-gradient(90deg,#FF
 @keyframes toast{0%{opacity:0;transform:translate(-50%,-8px)}12%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,0)}}
 @media (max-width:640px){#start{justify-content:center;align-items:flex-end;background:linear-gradient(0deg,rgba(11,6,24,.85) 30%,rgba(11,6,24,0) 80%);padding:8px}#start .panel{width:100%;max-height:62%}#start h2{font-size:30px}#start .blurb{display:none}}
 @media (prefers-reduced-motion: reduce){#start button.big,.bar i.rv,#toast.show{animation:none}#toast.show{opacity:1}}
-#musu{width:100%;box-sizing:border-box;font:400 13px var(--font-body);padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--chip);color:var(--fg)}
-#musf{width:100%;height:300px;border:0;border-radius:12px;display:none}
-#musn{font:400 12px var(--font-body);color:var(--muted)}
-#musn a{color:var(--accent)}
+*,.lab,.stp,#hud .lb{text-transform:lowercase!important;font-weight:800!important}
+button,.sw *,.chips *,#start button,.pill{border-radius:0!important}
+#wrap,#start .panel,input,#musf,#toast,.bar,.bar i,.pad+*{border-radius:0!important}
+button{border:2px solid var(--fg);box-shadow:3px 3px 0 var(--fg);transition:transform .08s,box-shadow .08s}
+button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--fg)}
+.pad button{border:0;box-shadow:none}
+button.primary,button.primary:hover{background:var(--accent);color:#fff}
+#wrap{border:2px solid var(--fg)}
+#musf{width:100%;height:300px;border:2px solid var(--fg);display:block;box-sizing:border-box}
+#musn{font:400 13px var(--font-body);color:var(--muted)}
+#musn a,#muso{color:var(--accent)}
 </style>
 
 <main class="shell">
 <header>
-<h1>Cat Rave Hall</h1>
-<p class="sub">A sparkly concert hall with seats, stairs, ledges and a Ferris wheel for the cats. Three real cat faces glow on the lanterns. Dress your own cat, then dance with friends live.</p>
+<h1>let’s see who can party the meowdest 😼</h1>
 </header>
 <div id="wrap"><canvas id="c" aria-label="3D view of the cat concert hall"></canvas>
 <div id="flash"></div>
@@ -108,7 +114,7 @@ button.primary:hover{filter:brightness(1.1);background:linear-gradient(90deg,#FF
 <div class="pad"><button id="bDance" aria-label="Dance" style="--c:#FF2E93"><svg viewBox="0 0 100 92" aria-hidden="true"><path class="hd" d="M13 50 L16 6 L48 26 Z"/><path class="hd" d="M87 50 L84 6 L52 26 Z"/><path class="in" d="M22 38 L23 17 L38 27 Z"/><path class="in" d="M78 38 L77 17 L62 27 Z"/><circle class="hd" cx="50" cy="56" r="36"/><circle class="ey" cx="37" cy="47" r="3.6"/><circle class="ey" cx="63" cy="47" r="3.6"/></svg><span>Dance</span></button><button id="bJump" aria-label="Jump" style="--c:#1EA7FF"><svg viewBox="0 0 100 92" aria-hidden="true"><path class="hd" d="M13 50 L16 6 L48 26 Z"/><path class="hd" d="M87 50 L84 6 L52 26 Z"/><path class="in" d="M22 38 L23 17 L38 27 Z"/><path class="in" d="M78 38 L77 17 L62 27 Z"/><circle class="hd" cx="50" cy="56" r="36"/><circle class="ey" cx="37" cy="47" r="3.6"/><circle class="ey" cx="63" cy="47" r="3.6"/></svg><span>Jump</span></button></div>
 </div>
 <div id="start"><div class="panel">
-<h2>Cat Rave</h2>
+<h2>meowchella</h2>
 <p class="blurb">Dress your cat, then hit the floor. Grab hearts, clovers and stars, land them on the beat and fill the rave meter.</p>
 <div class="stp">Your name</div><input id="nm" maxlength="14" autocomplete="off" spellcheck="false" aria-label="Your name">
 <div class="stp">Coat <span id="coatn"></span></div><div id="coats" class="sw" role="group" aria-label="Coat"></div>
@@ -126,15 +132,16 @@ button.primary:hover{filter:brightness(1.1);background:linear-gradient(90deg,#FF
 </div></div>
 <div class="group"><span class="lab">Show</span>
 <div class="row"><button id="play" class="primary">Play</button><button id="cz">Customize cat</button><button id="sh">Pause show</button><button id="snd">Sound: off</button><button id="shk">Shake: on</button></div></div>
-<div class="group"><span class="lab">Music</span>
-<div class="row" style="flex-wrap:nowrap"><input id="musu" aria-label="SoundCloud link" spellcheck="false" autocomplete="off" value="https://on.soundcloud.com/9xPVqLqPZfBzeYk1dO"><button id="musb">Load player</button></div>
-<iframe id="musf" title="SoundCloud player" allow="autoplay" loading="lazy"></iframe>
-<div id="musn">Paste any SoundCloud track or playlist link. If the player says it can't load, open the playlist in SoundCloud and paste the full soundcloud.com link. <a id="muso" href="https://on.soundcloud.com/9xPVqLqPZfBzeYk1dO" target="_blank" rel="noopener noreferrer">Open in SoundCloud</a></div></div>
+<div class="group"><span class="lab">music</span>
+<div class="row"><button id="musb">music: off</button><a id="muso" href="https://soundcloud.com/shybluehairedfey/sets/untitled-playlist" target="_blank" rel="noopener noreferrer">open in soundcloud</a></div>
+<div id="musn">tap music: on to hear the playlist. everyone hears the same part at the same time.</div>
+<iframe id="musf" title="soundcloud player" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fshybluehairedfey%2Fsets%2Funtitled-playlist&color=%23ff2e93&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false"></iframe></div>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://w.soundcloud.com/player/api.js" onerror="void 0"></script>
 <script src="config.js" onerror="void 0"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.min.js" onerror="void 0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" onerror="void 0"></script>
 <script src="cat_model.js"></script>
 <script>
 (function(){
@@ -628,9 +635,9 @@ function paint(im){var x=c.getContext('2d');x.fillStyle='#1A1020';x.fillRect(0,0
 if(im)x.drawImage(im,16,16,480,480);else{x.fillStyle='#2A1650';x.fillRect(16,16,480,480);}
 var gr=x.createLinearGradient(0,500,512,640);gr.addColorStop(0,'#FF2E93');gr.addColorStop(0.5,'#9B4DFF');gr.addColorStop(1,'#1EA7FF');
 x.fillStyle=gr;x.fillRect(16,508,480,116);x.fillStyle='#fff';x.textAlign='center';x.textBaseline='middle';
-x.font='76px Bangers, sans-serif';x.fillText('CAT RAVE',256,548);x.font='34px Bangers, sans-serif';x.fillText('\u2605  LIVE TONIGHT  \u2605',256,595);t.needsUpdate=true;}
+x.font='800 76px Nunito, Arial, sans-serif';x.fillText('meowchella',256,548);x.font='800 34px Nunito, Arial, sans-serif';x.fillText('\u2605  live tonight  \u2605',256,595);t.needsUpdate=true;}
 paint(null);var im=new Image(),ldd=false;im.onload=function(){ldd=im;paint(im);};im.src=src;
-if(document.fonts&&document.fonts.load)document.fonts.load('40px Bangers').then(function(){paint(ldd||null);});return t;});
+if(document.fonts&&document.fonts.load)document.fonts.load('800 40px Nunito').then(function(){paint(ldd||null);});return t;});
 [-1,1].forEach(function(s){[-30,-10,10,30].forEach(function(z,j){
 var k=(j+(s>0?1:0))%3,fc=[HP,GR,PU,BL,OR][(j*2+(s>0?1:0))%5];
 var pm=new THREE.Mesh(new THREE.PlaneGeometry(8,10),new THREE.MeshBasicMaterial({map:POSTERS[k],color:0xE6E6E6}));
@@ -1081,7 +1088,7 @@ function mpSync(force){if(!MP.room)return;var now=performance.now();if(!force&&n
 var s=mpState(),k=JSON.stringify(s);if(!force&&k===MP.key)return;MP.key=k;MP.last=now;
 try{MP.room.presence(s).catch(function(){});}catch(err){}}
 function mkTag(name){var c=document.createElement('canvas');c.width=256;c.height=64;var x=c.getContext('2d');
-x.font='36px Bangers, Trebuchet MS, sans-serif';x.textAlign='center';x.textBaseline='middle';
+x.font='800 36px Nunito, Arial, sans-serif';name=String(name).toLowerCase();x.textAlign='center';x.textBaseline='middle';
 var w=Math.min(244,x.measureText(name).width+36);x.fillStyle='rgba(30,10,60,0.78)';x.beginPath();
 if(x.roundRect)x.roundRect(128-w/2,6,w,52,26);else x.rect(128-w/2,6,w,52);x.fill();
 x.lineWidth=3;x.strokeStyle='#FF5CAA';x.stroke();x.fillStyle='#fff';x.fillText(name,128,33,236);
@@ -1231,16 +1238,58 @@ frame();
 })();
 </script>
 <script>
+/* Music that is the same for everybody: all devices derive the playhead from the wall clock
+   (position = now mod total playlist length), so no server is needed and late joiners land in the right spot. */
 (function(){
-var u=document.getElementById('musu'),b=document.getElementById('musb'),f=document.getElementById('musf'),o=document.getElementById('muso');
-function load(){
-  var v=(u.value||'').trim();
-  if(!/^https:\/\/(on\.soundcloud\.com|soundcloud\.com|m\.soundcloud\.com)\//.test(v)){u.setCustomValidity('Use a soundcloud.com link');u.reportValidity();u.setCustomValidity('');return;}
-  o.href=v;
-  f.src='https://w.soundcloud.com/player/?url='+encodeURIComponent(v)+'&color=%23ff2e93&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false';
-  f.style.display='block';b.textContent='Reload player';
+var f=document.getElementById('musf'),b=document.getElementById('musb'),n=document.getElementById('musn');
+var W=null,durs=null,total=0,on=false,userOff=false,wantOn=false,lastFix=0,fixAt=0,pendingSeek=false,lastEv=0;
+function say(t){n.textContent=t;}
+function label(){b.textContent='music: '+(on?'on':'off');}
+function plan(){var t=Date.now()%total,i=0;while(i<durs.length-1&&t>=durs[i]){t-=durs[i];i++;}return {i:i,o:t};}
+function ok(){return W&&durs&&total>0;}
+function sync(force){
+  if(!on||!ok())return;var now=Date.now();if(!force&&now-lastFix<4500)return;
+  var p=plan();
+  try{W.getCurrentSoundIndex(function(ci){W.getPosition(function(pos){
+    if(ci===p.i&&Math.abs(pos-p.o)<1800)return;
+    lastFix=Date.now();fixAt=lastFix;
+    if(ci!==p.i){pendingSeek=true;W.skip(p.i);W.play();setTimeout(function(){if(pendingSeek){pendingSeek=false;try{W.seekTo(plan().o+250);}catch(err){}}},1800);}
+    else{W.seekTo(plan().o+250);}
+  });});}catch(err){}
 }
-b.addEventListener('click',load);
-u.addEventListener('keydown',function(e){if(e.key==='Enter')load();});
+function start(){
+  userOff=false;
+  if(!ok()){wantOn=true;say('loading the playlist...');return;}
+  on=true;label();say('music is synced with everyone.');
+  try{W.play();}catch(err){}
+  setTimeout(function(){sync(true);},600);
+}
+function stop(){userOff=true;on=false;wantOn=false;label();try{W.pause();}catch(err){}say('music paused (just for you).');}
+b.addEventListener('click',function(){if(on)stop();else start();});
+['go','look','play'].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener('click',function(){if(!on&&!userOff)start();});});
+if(!window.SC||!window.SC.Widget){say('the music player could not load here. use the soundcloud link.');return;}
+var loadT=setTimeout(function(){if(!W||!durs)say('the playlist is slow to load. you can also open it in soundcloud.');},9000);
+try{
+  W=window.SC.Widget(f);
+  var E=window.SC.Widget.Events;
+  W.bind(E.READY,function(){
+    W.getSounds(function(list){
+      if(!list||!list.length){say('could not read the playlist. open it in soundcloud.');return;}
+      durs=list.map(function(x){return Math.max(1000,x.duration|0);});
+      total=durs.reduce(function(a,c){return a+c;},0);
+      clearTimeout(loadT);
+      say('tap music: on to hear the playlist. everyone hears the same part at the same time.');
+      if(wantOn)start();
+    });
+  });
+  W.bind(E.PLAY,function(){
+    lastEv=Date.now();
+    if(pendingSeek&&ok()){pendingSeek=false;try{W.seekTo(plan().o+250);}catch(err){}return;}
+    if(!on&&ok()){on=true;userOff=false;label();setTimeout(function(){sync(true);},500);}
+  });
+  W.bind(E.PAUSE,function(){if(Date.now()-fixAt<2500||Date.now()-lastEv<400)return;if(on){on=false;userOff=true;label();}});
+  W.bind(E.FINISH,function(){fixAt=Date.now();setTimeout(function(){lastFix=0;sync(true);},400);});
+}catch(err){say('the music player could not start. use the soundcloud link.');}
+setInterval(function(){sync(false);},5000);
 })();
 </script>
